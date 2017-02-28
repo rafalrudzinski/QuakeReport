@@ -3,7 +3,7 @@ package com.example.rrudz.quakereport;
 
 public class Earthquake {
 
-    private String mMagnitude;
+    private double mMagnitude;
     private String mLocation;
     private long mTimeInMilliseconds;
 
@@ -14,7 +14,7 @@ public class Earthquake {
      * @param location the location of an earthquake
      * @param timeInMilliseconds the date the earthquake was recorded
      */
-    public Earthquake(String magnitude, String location, long timeInMilliseconds) {
+    public Earthquake(double magnitude, String location, long timeInMilliseconds) {
         mMagnitude = magnitude;
         mLocation = location;
         mTimeInMilliseconds = timeInMilliseconds;
@@ -25,7 +25,7 @@ public class Earthquake {
      *
      * @return the magnitude of this earthquake
      */
-    public String getMagnitude() {
+    public double getMagnitude() {
         return mMagnitude;
     }
 

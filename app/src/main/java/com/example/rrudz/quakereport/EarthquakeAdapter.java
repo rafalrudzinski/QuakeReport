@@ -1,24 +1,25 @@
 package com.example.rrudz.quakereport;
 
 
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import java.util.Date;
 
-import org.w3c.dom.Text;
-
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
+
+    private static final String LOCATION_SEPARATOR = " of ";
+
+    private String primaryLocation;
+    private String locationOffset;
 
     /**
      * Custom constructor. Context is used to inflate the layout file and
@@ -45,17 +46,33 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         Earthquake currentEarthquake = getItem(position);
 
         // find TextView in list_item layout with ID magnitude_text_view
-        TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
+        TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude);
 
+        String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
 
         // display the magnitude of the current earthquake
-        magnitudeTextView.setText(currentEarthquake.getMagnitude());
+        magnitudeTextView.setText(formattedMagnitude);
+
+        String originalLocation = currentEarthquake.getLocation();
+
+        if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
+            locationOffset = parts[0] + LOCATION_SEPARATOR;
+            primaryLocation = parts[1];
+        } else {
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = originalLocation;
+        }
 
         // find TextView in list_item layout with ID location_text_view
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
+        TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
 
         // display the location of the current earthquake
-        locationTextView.setText(currentEarthquake.getLocation());
+        primaryLocationView.setText(primaryLocation);
+
+        TextView locationOffsetView = (TextView) listItemView.findViewById((R.id.location_offset));
+
+        locationOffsetView.setText(locationOffset);
 
         // create a new Date object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
