@@ -4,4 +4,6 @@
     andoid:id="@+id/list"
     andoid:orientation="vertical"
     andoid:layout_width="match_parent"
-    andoid:layout_height="match_parent" />
+    andoid:layout_height="match_parent"
+    andoid:divider="@null"
+    andoid:dividerHeight="0dp"/>
