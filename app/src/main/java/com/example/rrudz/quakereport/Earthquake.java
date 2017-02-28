@@ -1,52 +1,49 @@
 package com.example.rrudz.quakereport;
 
-/**
- * Created by Rafal on 2/23/2017.
- */
 
 public class Earthquake {
 
     private String mMagnitude;
     private String mLocation;
-    private String mDate;
+    private long mTimeInMilliseconds;
 
     /**
-     * Create new Earthquake object
+     * Create a new Earthquake object
      *
-     * @param magnitude magnitude of earthquake
-     * @param location location of earthquake
-     * @param date date of earthquake
+     * @param magnitude the magnitude of an earthquake
+     * @param location the location of an earthquake
+     * @param timeInMilliseconds the date the earthquake was recorded
      */
-    public Earthquake(String magnitude, String location, String date) {
+    public Earthquake(String magnitude, String location, long timeInMilliseconds) {
         mMagnitude = magnitude;
         mLocation = location;
-        mDate = date;
+        mTimeInMilliseconds = timeInMilliseconds;
     }
 
     /**
-     * Magnitude of earthquake
+     * Magnitude of an earthquake
      *
-     * @return magnitude of earthquake
+     * @return the magnitude of this earthquake
      */
     public String getMagnitude() {
         return mMagnitude;
     }
 
     /**
-     * Location of earthquake
+     * Location of an earthquake
      *
-     * @return location of earthquake
+     * @return the location of this earthquake
      */
     public String getLocation() {
         return mLocation;
     }
 
     /**
-     * Date of earthquake
+     * Date the earthquake happened
      *
-     * @return date of earthquake
+     * @return the date of this earthquake
      */
-    public String getDate() {
-        return mDate;
+    public long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 }
